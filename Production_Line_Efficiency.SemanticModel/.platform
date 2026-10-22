@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "SemanticModel",
+    "displayName": "Production_Line_Efficiency"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "7489852d-93f9-4bd3-9ee0-a9cbbd299125"
+  }
+}

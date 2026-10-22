@@ -1,0 +1,63 @@
+table DimMachine
+	lineageTag: 4eab2070-2443-4b9d-bc4e-b7daeafe428b
+
+	column MachineID
+		dataType: int64
+		lineageTag: 62dfe9d7-00ed-4223-9391-973f01319df9
+		summarizeBy: none
+		sourceColumn: MachineID
+
+		annotation SummarizationSetBy = Automatic
+
+	column MachineName
+		dataType: string
+		lineageTag: d8481da1-0f8c-4ba6-9ac9-7dc8e7491034
+		summarizeBy: none
+		sourceColumn: MachineName
+
+		annotation SummarizationSetBy = Automatic
+
+	column MachineType
+		dataType: string
+		lineageTag: 1463f1f9-2fd4-4508-9329-c472e97d355a
+		summarizeBy: none
+		sourceColumn: MachineType
+
+		annotation SummarizationSetBy = Automatic
+
+	column PlantID
+		dataType: int64
+		lineageTag: 5257a38f-3fe3-4a69-a320-160dd8263f4f
+		summarizeBy: none
+		sourceColumn: PlantID
+
+		annotation SummarizationSetBy = Automatic
+
+	column InstallYear
+		dataType: int64
+		lineageTag: 690ce845-e598-4824-b244-87936d55ce39
+		summarizeBy: none
+		sourceColumn: InstallYear
+
+		annotation SummarizationSetBy = Automatic
+
+	column Capacity_UnitsPerHour
+		dataType: int64
+		lineageTag: 3da06153-aae5-4121-97b4-65a2ee0971fd
+		summarizeBy: none
+		sourceColumn: Capacity_UnitsPerHour
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DimMachine = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DossierDonnees & "DimMachine.csv"), [Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    Typed = Table.TransformColumnTypes(Promoted, {{"MachineID", Int64.Type}, {"MachineName", type text}, {"MachineType", type text}, {"PlantID", Int64.Type}, {"InstallYear", Int64.Type}, {"Capacity_UnitsPerHour", Int64.Type}})
+				in
+				    Typed
+
+	annotation PBI_ResultType = Table
+

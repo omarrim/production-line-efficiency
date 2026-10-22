@@ -1,0 +1,71 @@
+table FactInventory
+	lineageTag: babb5cc3-33c6-40e3-bb3d-9cfbf8c6d706
+
+	column InventoryID
+		dataType: int64
+		lineageTag: f6ec17d5-5131-4f6a-8c85-aa7051972a58
+		summarizeBy: none
+		sourceColumn: InventoryID
+
+		annotation SummarizationSetBy = Automatic
+
+	column DateKey
+		dataType: int64
+		lineageTag: 97de9412-b929-4bf0-8130-d582e97ead76
+		summarizeBy: none
+		sourceColumn: DateKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column PlantID
+		dataType: int64
+		lineageTag: 40f79bb6-4bf3-43dd-a49d-b6a6bdb51d63
+		summarizeBy: none
+		sourceColumn: PlantID
+
+		annotation SummarizationSetBy = Automatic
+
+	column ProductID
+		dataType: int64
+		lineageTag: 8d0963ed-dbcb-4949-afa4-71d7c6aa9b8b
+		summarizeBy: none
+		sourceColumn: ProductID
+
+		annotation SummarizationSetBy = Automatic
+
+	column StockOnHand
+		dataType: int64
+		lineageTag: 13968e11-c1c8-4a20-b717-949d5d168416
+		summarizeBy: none
+		sourceColumn: StockOnHand
+
+		annotation SummarizationSetBy = Automatic
+
+	column ReorderPoint
+		dataType: int64
+		lineageTag: fd3f8659-259e-4c33-86a8-14fc8929dd5e
+		summarizeBy: none
+		sourceColumn: ReorderPoint
+
+		annotation SummarizationSetBy = Automatic
+
+	column Status
+		dataType: string
+		lineageTag: b2743ff3-ec2a-4ce1-a8a7-a4943682902a
+		summarizeBy: none
+		sourceColumn: Status
+
+		annotation SummarizationSetBy = Automatic
+
+	partition FactInventory = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DossierDonnees & "FactInventory.csv"), [Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    Typed = Table.TransformColumnTypes(Promoted, {{"InventoryID", Int64.Type}, {"DateKey", Int64.Type}, {"PlantID", Int64.Type}, {"ProductID", Int64.Type}, {"StockOnHand", Int64.Type}, {"ReorderPoint", Int64.Type}, {"Status", type text}})
+				in
+				    Typed
+
+	annotation PBI_ResultType = Table
+

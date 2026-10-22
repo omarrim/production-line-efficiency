@@ -1,0 +1,27 @@
+table ProgressMetrics
+	lineageTag: fbf1d755-087d-41c3-bdab-d81dbd978467
+
+	column Metric
+		dataType: string
+		lineageTag: 5bf309e8-bc22-41fc-8ce2-ead3f8f5f3c5
+		summarizeBy: none
+		sourceColumn: [Metric]
+		sortByColumn: Sort
+
+		annotation SummarizationSetBy = Automatic
+
+	column Sort
+		dataType: int64
+		isHidden
+		lineageTag: fb307186-229f-4900-bdd0-bd70f1f7f653
+		summarizeBy: none
+		sourceColumn: [Sort]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition ProgressMetrics = calculated
+		mode: import
+		source = DATATABLE("Metric", STRING, "Sort", INTEGER, {{"Schedule Attainment", 1}, {"Maintenance Compliance", 2}, {"Stock Health", 3}})
+
+	annotation PBI_ResultType = Table
+

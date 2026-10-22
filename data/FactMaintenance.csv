@@ -1,0 +1,162 @@
+MaintenanceID,DateKey,MachineID,PlantID,AlertType,Priority,Status,EstimatedHours
+1,20260416,1,1,Predictive,High,In Progress,5.7
+2,20260416,2,1,Predictive,Critical,In Progress,1.1
+3,20260424,2,1,Predictive,High,Scheduled,4.6
+4,20260521,2,1,Preventive,Critical,Completed,11.0
+5,20260216,3,1,Preventive,High,Completed,3.5
+6,20260406,3,1,Predictive,Medium,Overdue,10.0
+7,20260528,3,1,Preventive,High,Overdue,7.1
+8,20260419,3,1,Preventive,Critical,Scheduled,6.2
+9,20260401,4,1,Corrective,High,Scheduled,1.0
+10,20260217,4,1,Corrective,High,In Progress,7.0
+11,20260404,4,1,Corrective,Low,In Progress,4.5
+12,20260419,5,1,Corrective,Low,Scheduled,4.0
+13,20260605,5,1,Predictive,High,In Progress,10.1
+14,20260506,5,1,Corrective,Low,In Progress,4.7
+15,20260330,6,1,Predictive,Critical,Overdue,7.3
+16,20260226,6,1,Predictive,Low,Scheduled,5.6
+17,20260323,6,1,Predictive,Medium,Overdue,9.6
+18,20260528,7,1,Predictive,Critical,Overdue,6.4
+19,20260501,7,1,Predictive,Critical,Scheduled,1.8
+20,20260316,7,1,Corrective,Medium,Scheduled,4.6
+21,20260327,8,1,Preventive,Critical,Scheduled,4.8
+22,20260508,8,1,Predictive,Critical,Completed,7.1
+23,20260324,9,1,Predictive,Medium,Overdue,10.3
+24,20260228,9,1,Preventive,Critical,Completed,8.3
+25,20260418,9,1,Preventive,Low,Overdue,8.6
+26,20260604,10,1,Corrective,Critical,In Progress,2.9
+27,20260521,10,1,Preventive,Low,Overdue,0.6
+28,20260312,11,1,Preventive,High,Completed,5.6
+29,20260404,11,1,Predictive,Medium,Overdue,3.1
+30,20260422,11,1,Preventive,High,Completed,3.7
+31,20260225,12,1,Predictive,Low,In Progress,0.5
+32,20260418,12,1,Corrective,Medium,Overdue,3.8
+33,20260213,12,1,Preventive,Low,Scheduled,9.5
+34,20260511,13,2,Preventive,High,Completed,2.4
+35,20260328,13,2,Preventive,Medium,Completed,10.5
+36,20260502,14,2,Corrective,Medium,Completed,6.2
+37,20260219,14,2,Preventive,Low,Completed,4.3
+38,20260410,14,2,Preventive,Medium,Overdue,1.4
+39,20260325,15,2,Corrective,Critical,Overdue,5.1
+40,20260224,15,2,Preventive,Critical,Overdue,12.0
+41,20260525,15,2,Preventive,Low,Scheduled,5.3
+42,20260326,16,2,Preventive,Medium,Overdue,6.0
+43,20260502,16,2,Corrective,Medium,In Progress,7.2
+44,20260305,16,2,Preventive,Low,In Progress,8.3
+45,20260422,17,2,Corrective,Low,In Progress,6.8
+46,20260221,17,2,Predictive,Low,In Progress,8.7
+47,20260408,18,2,Preventive,Medium,In Progress,6.8
+48,20260530,18,2,Corrective,Medium,Scheduled,5.5
+49,20260411,18,2,Corrective,High,In Progress,2.4
+50,20260207,19,2,Preventive,Low,In Progress,3.8
+51,20260404,20,2,Predictive,Medium,Completed,11.3
+52,20260503,20,2,Corrective,Low,Scheduled,1.7
+53,20260602,20,2,Corrective,Low,Overdue,6.6
+54,20260503,21,2,Preventive,Low,Overdue,7.9
+55,20260224,21,2,Preventive,Critical,Completed,2.5
+56,20260520,22,2,Corrective,Medium,Overdue,2.6
+57,20260319,23,2,Corrective,Low,Completed,8.0
+58,20260523,23,2,Preventive,High,Overdue,4.8
+59,20260420,23,2,Predictive,Low,Completed,10.6
+60,20260603,24,2,Preventive,Medium,Scheduled,10.4
+61,20260503,24,2,Corrective,Low,Scheduled,7.1
+62,20260328,24,2,Predictive,Low,Scheduled,5.6
+63,20260504,25,3,Preventive,Medium,In Progress,9.6
+64,20260422,25,3,Corrective,High,Scheduled,6.6
+65,20260313,25,3,Preventive,Critical,Scheduled,7.8
+66,20260520,26,3,Predictive,Medium,Overdue,10.2
+67,20260423,26,3,Corrective,Low,Scheduled,2.6
+68,20260515,27,3,Preventive,High,Overdue,11.6
+69,20260414,27,3,Corrective,High,Completed,7.5
+70,20260430,28,3,Preventive,Low,Scheduled,8.7
+71,20260206,29,3,Corrective,Medium,In Progress,5.0
+72,20260504,29,3,Preventive,Medium,Completed,10.3
+73,20260503,29,3,Corrective,Low,Overdue,10.7
+74,20260305,29,3,Corrective,Critical,Scheduled,7.7
+75,20260321,30,3,Predictive,Critical,Scheduled,10.4
+76,20260306,30,3,Predictive,Medium,Overdue,7.9
+77,20260505,30,3,Corrective,Low,In Progress,7.0
+78,20260430,30,3,Predictive,Critical,Scheduled,7.1
+79,20260418,31,3,Preventive,High,Completed,2.7
+80,20260408,31,3,Predictive,Critical,Overdue,7.6
+81,20260208,31,3,Preventive,Critical,Overdue,11.5
+82,20260324,32,3,Preventive,Low,Completed,7.7
+83,20260512,32,3,Corrective,Medium,Completed,3.3
+84,20260508,32,3,Corrective,Low,Scheduled,5.3
+85,20260302,32,3,Predictive,Critical,Overdue,9.1
+86,20260417,33,3,Preventive,High,In Progress,10.6
+87,20260419,33,3,Corrective,Low,Scheduled,9.1
+88,20260408,33,3,Predictive,Critical,Completed,9.3
+89,20260525,33,3,Predictive,Critical,In Progress,6.5
+90,20260407,34,3,Preventive,Low,Completed,6.4
+91,20260225,34,3,Corrective,Low,Overdue,4.2
+92,20260213,34,3,Preventive,Low,Completed,8.8
+93,20260529,35,3,Corrective,High,Scheduled,2.0
+94,20260531,35,3,Predictive,Low,Scheduled,2.7
+95,20260510,35,3,Preventive,Critical,Scheduled,2.3
+96,20260410,35,3,Corrective,Critical,Scheduled,11.0
+97,20260425,36,3,Predictive,Medium,Completed,3.9
+98,20260303,36,3,Preventive,Medium,Scheduled,9.6
+99,20260208,36,3,Predictive,Low,In Progress,1.4
+100,20260605,36,3,Predictive,High,Scheduled,7.8
+101,20260331,37,4,Predictive,High,In Progress,1.1
+102,20260427,37,4,Corrective,Critical,Overdue,2.8
+103,20260207,37,4,Predictive,Critical,Scheduled,9.7
+104,20260423,38,4,Predictive,Medium,Scheduled,1.3
+105,20260305,38,4,Preventive,Medium,Overdue,7.3
+106,20260514,38,4,Corrective,Low,Overdue,4.1
+107,20260217,39,4,Preventive,Medium,Overdue,5.3
+108,20260207,39,4,Preventive,Critical,Overdue,6.3
+109,20260515,39,4,Corrective,High,Scheduled,3.7
+110,20260514,40,4,Predictive,Critical,Scheduled,10.3
+111,20260316,41,4,Predictive,Critical,In Progress,7.3
+112,20260325,41,4,Preventive,Low,Overdue,10.1
+113,20260518,41,4,Corrective,Critical,Overdue,6.3
+114,20260209,42,4,Predictive,Critical,Scheduled,0.8
+115,20260329,43,4,Preventive,High,Completed,9.5
+116,20260516,44,4,Corrective,Critical,Completed,10.2
+117,20260606,44,4,Predictive,Critical,Overdue,5.3
+118,20260311,44,4,Predictive,Low,Completed,2.9
+119,20260603,45,4,Predictive,High,In Progress,10.2
+120,20260221,45,4,Predictive,High,Scheduled,3.4
+121,20260504,45,4,Corrective,Medium,In Progress,5.5
+122,20260305,45,4,Corrective,High,Completed,3.8
+123,20260427,46,4,Preventive,High,Scheduled,5.8
+124,20260315,46,4,Corrective,Critical,Completed,10.9
+125,20260412,46,4,Predictive,Medium,Overdue,3.2
+126,20260427,47,4,Corrective,Low,Overdue,7.4
+127,20260314,48,4,Predictive,Low,Overdue,4.5
+128,20260303,49,5,Preventive,Low,Completed,5.8
+129,20260321,50,5,Corrective,High,Completed,6.4
+130,20260508,50,5,Preventive,Critical,Scheduled,4.5
+131,20260421,50,5,Preventive,Critical,Scheduled,3.4
+132,20260511,50,5,Preventive,Medium,Completed,7.4
+133,20260601,51,5,Predictive,Low,In Progress,3.0
+134,20260325,51,5,Corrective,High,Overdue,10.3
+135,20260421,51,5,Preventive,Critical,In Progress,3.5
+136,20260412,52,5,Corrective,Medium,Scheduled,5.9
+137,20260218,53,5,Preventive,High,In Progress,8.1
+138,20260421,53,5,Corrective,High,Scheduled,11.0
+139,20260212,54,5,Preventive,Low,Overdue,10.1
+140,20260211,54,5,Corrective,High,Overdue,10.3
+141,20260430,54,5,Preventive,Low,Scheduled,11.2
+142,20260427,54,5,Preventive,High,Completed,7.7
+143,20260406,55,5,Predictive,Low,Completed,7.5
+144,20260206,56,5,Preventive,High,In Progress,9.3
+145,20260323,56,5,Predictive,Low,In Progress,10.6
+146,20260307,56,5,Corrective,Medium,Completed,1.1
+147,20260320,56,5,Corrective,Medium,Completed,3.8
+148,20260216,57,5,Preventive,Low,Completed,2.2
+149,20260312,57,5,Predictive,Critical,Overdue,2.3
+150,20260424,57,5,Corrective,Critical,Overdue,0.7
+151,20260315,57,5,Predictive,Medium,In Progress,8.3
+152,20260304,58,5,Corrective,Medium,Scheduled,11.5
+153,20260508,58,5,Corrective,Low,Scheduled,3.7
+154,20260331,58,5,Corrective,High,Overdue,4.2
+155,20260404,58,5,Preventive,Low,In Progress,5.8
+156,20260419,59,5,Predictive,Critical,Completed,3.9
+157,20260207,59,5,Predictive,Low,In Progress,1.7
+158,20260606,59,5,Preventive,Low,Scheduled,0.8
+159,20260224,60,5,Corrective,Critical,Scheduled,6.5
+160,20260426,60,5,Predictive,Low,Overdue,1.6
+161,20260308,60,5,Preventive,Low,Completed,7.5

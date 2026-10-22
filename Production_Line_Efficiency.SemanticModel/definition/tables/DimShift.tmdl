@@ -1,0 +1,47 @@
+table DimShift
+	lineageTag: a40ff5f5-431d-4ce7-a0c2-fe1dd50940f8
+
+	column ShiftID
+		dataType: int64
+		lineageTag: 4553226b-b72a-4e44-a3f9-e5bbf5563b77
+		summarizeBy: none
+		sourceColumn: ShiftID
+
+		annotation SummarizationSetBy = Automatic
+
+	column ShiftName
+		dataType: string
+		lineageTag: 73816088-e0a8-4cd4-bbe9-6aef354e1667
+		summarizeBy: none
+		sourceColumn: ShiftName
+
+		annotation SummarizationSetBy = Automatic
+
+	column StartTime
+		dataType: string
+		lineageTag: 1c0d64aa-075d-4cf2-b5ed-df539b2de880
+		summarizeBy: none
+		sourceColumn: StartTime
+
+		annotation SummarizationSetBy = Automatic
+
+	column EndTime
+		dataType: string
+		lineageTag: 2db7bff6-68db-4d0c-b558-152c80e99b9f
+		summarizeBy: none
+		sourceColumn: EndTime
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DimShift = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DossierDonnees & "DimShift.csv"), [Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    Typed = Table.TransformColumnTypes(Promoted, {{"ShiftID", Int64.Type}, {"ShiftName", type text}, {"StartTime", type text}, {"EndTime", type text}})
+				in
+				    Typed
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,71 @@
+table FactDowntime
+	lineageTag: 2b699eea-2eb8-49e3-a727-18ac03591bc0
+
+	column DowntimeID
+		dataType: int64
+		lineageTag: 5a1bc65b-74d1-4a8e-bfb8-1a2e2edf51b1
+		summarizeBy: none
+		sourceColumn: DowntimeID
+
+		annotation SummarizationSetBy = Automatic
+
+	column DateKey
+		dataType: int64
+		lineageTag: 3ac6db64-3d5a-4140-aa7e-79962d459d56
+		summarizeBy: none
+		sourceColumn: DateKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column PlantID
+		dataType: int64
+		lineageTag: ee9fe564-1f57-44a1-ba72-f822bbeedb39
+		summarizeBy: none
+		sourceColumn: PlantID
+
+		annotation SummarizationSetBy = Automatic
+
+	column MachineID
+		dataType: int64
+		lineageTag: c6f63c4d-37d9-4ccf-8337-b21a98aee73e
+		summarizeBy: none
+		sourceColumn: MachineID
+
+		annotation SummarizationSetBy = Automatic
+
+	column ShiftID
+		dataType: int64
+		lineageTag: c08f3fb1-e001-4f57-a153-e39787215cb8
+		summarizeBy: none
+		sourceColumn: ShiftID
+
+		annotation SummarizationSetBy = Automatic
+
+	column DowntimeReasonID
+		dataType: int64
+		lineageTag: 5280b1b6-9d28-497e-9269-f86cdad8f7eb
+		summarizeBy: none
+		sourceColumn: DowntimeReasonID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Downtime_Hours
+		dataType: double
+		lineageTag: 9e116524-560d-47fe-9d3e-48c1a4b356e2
+		summarizeBy: none
+		sourceColumn: Downtime_Hours
+
+		annotation SummarizationSetBy = Automatic
+
+	partition FactDowntime = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DossierDonnees & "FactDowntime.csv"), [Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    Typed = Table.TransformColumnTypes(Promoted, {{"DowntimeID", Int64.Type}, {"DateKey", Int64.Type}, {"PlantID", Int64.Type}, {"MachineID", Int64.Type}, {"ShiftID", Int64.Type}, {"DowntimeReasonID", Int64.Type}, {"Downtime_Hours", type number}})
+				in
+				    Typed
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,7 @@
+DowntimeReasonID,ReasonName,ReasonCategory
+1,Planned Maintenance,Planned
+2,Breakdown,Unplanned
+3,Setup / Changeover,Planned
+4,Material Shortage,Unplanned
+5,Quality Issue,Unplanned
+6,Operator Break,Planned

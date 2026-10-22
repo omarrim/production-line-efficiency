@@ -1,0 +1,452 @@
+table _Measures
+	lineageTag: 5e7995c3-af00-4800-a665-cc2d23cf41a6
+
+	measure Availability = DIVIDE(SUM(FactProduction[OperatingTime_Min]), SUM(FactProduction[PlannedProductionTime_Min]))
+		formatString: 0.0%
+		lineageTag: c0657d21-0df9-48c8-9190-d99bdb35271b
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Performance = VAR IdealOutput = SUMX(FactProduction, DIVIDE(FactProduction[OperatingTime_Min], FactProduction[IdealCycleTime_Min])) RETURN DIVIDE(SUM(FactProduction[TotalUnitsProduced]), IdealOutput)
+		formatString: 0.0%
+		lineageTag: 5b46e3b2-19b8-4233-b9a1-3180859f3fbe
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Quality = DIVIDE(SUM(FactProduction[GoodUnits]), SUM(FactProduction[TotalUnitsProduced]))
+		formatString: 0.0%
+		lineageTag: f454b117-5b00-4308-9457-ac881ed630ab
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure OEE = [Availability] * [Performance] * [Quality]
+		formatString: 0%
+		lineageTag: 3a294ed9-e5be-4dba-97f3-41a87963ee6c
+
+		annotation PBI_FormatHint = {"isCustom":true}
+
+	measure 'OEE PP' = CALCULATE([OEE], DATEADD(DimDate[Date], -30, DAY))
+		formatString: 0.0%
+		lineageTag: 8d032ea8-306c-4534-b86b-e08fedca5dd4
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'OEE Variation' = [OEE] - [OEE PP]
+		formatString: +0.0%;-0.0%;0.0%
+		lineageTag: b5dfc0fe-12ac-42bd-801e-aa1223b2b329
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'OEE Variation %' = DIVIDE([OEE Variation], [OEE PP])
+		formatString: +0.0%;-0.0%;0.0%
+		lineageTag: 4125d1cc-1b0d-4fbc-a9f4-805d68f841bb
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Total Defects' = SUM(FactDefects[DefectCount])
+		formatString: #,0
+		lineageTag: b6ea0c01-cb1c-4829-933e-8f744fa49db3
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Total Production' = SUM(FactProduction[TotalUnitsProduced])
+		formatString: #,0
+		lineageTag: 16eaeb3d-3740-4849-bc8a-07f6a2ab1524
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Defect Rate' = DIVIDE([Total Defects], [Total Production])
+		formatString: 0.0%
+		lineageTag: 147d4c00-13db-4208-9659-a3c186dce3cc
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Defect Rate PP' = CALCULATE([Defect Rate], DATEADD(DimDate[Date], -30, DAY))
+		formatString: 0.0%
+		lineageTag: 1eb1b2db-6774-4e7f-9c73-32cdbd5f5aae
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Defect Rate Variation' = [Defect Rate] - [Defect Rate PP]
+		formatString: +0.0%;-0.0%;0.0%
+		lineageTag: 088f6fef-ae32-42ee-a5ac-55e063b857e8
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Production Yield' = DIVIDE(SUM(FactProduction[GoodUnits]), SUM(FactProduction[TotalUnitsProduced]))
+		formatString: 0%
+		lineageTag: a75b1b12-91df-472d-b7a6-4f187b8446d1
+
+		annotation PBI_FormatHint = {"isCustom":true}
+
+	measure 'Production Yield PP' = CALCULATE([Production Yield], DATEADD(DimDate[Date], -30, DAY))
+		formatString: 0.0%
+		lineageTag: e7fe94b6-2e2b-41f0-85a9-40b4b009cbd2
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Production Yield Variation' = [Production Yield] - [Production Yield PP]
+		formatString: +0.0%;-0.0%;0.0%
+		lineageTag: f3c3eb4f-ceca-468d-aaf2-64eaea98804b
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Total Downtime Hours' = SUM(FactDowntime[Downtime_Hours])
+		formatString: #,0.0
+		lineageTag: ef2ec0b0-e4b9-4fe3-9b4b-667e1679040f
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Downtime Hours Display' = [Total Downtime Hours Selected] & " hours"
+		formatString: 0% hours
+		lineageTag: cdde30a8-62d1-4301-942a-6d842ee1a015
+
+		annotation PBI_FormatHint = {"isCustom":true}
+
+	measure 'Downtime PP' = CALCULATE([Total Downtime Hours], DATEADD(DimDate[Date], -30, DAY))
+		formatString: #,0.0
+		lineageTag: 6bebddfe-3087-4e38-a89e-3d54fa5dde16
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Downtime Variation' = [Total Downtime Hours] - [Downtime PP]
+		formatString: +0.0;-0.0;0.0
+		lineageTag: dee56fc2-9bf5-4807-83f3-3af3d4b60cfc
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'AVG OEE' = AVERAGEX(VALUES(DimDate[Date]), [OEE])
+		formatString: 0%
+		lineageTag: 1ed614af-8f56-4434-9c8e-c6d3f4655b83
+
+		annotation PBI_FormatHint = {"isCustom":true}
+
+	measure 'GAP OEE' = [OEE] - 0.80
+		formatString: +0%;-0%;0%
+		lineageTag: 4db9d83c-1a38-4b24-9693-2a23db3570f6
+
+		annotation PBI_FormatHint = {"isCustom":true}
+
+	measure 'RANK OEE Plant' = RANKX(ALL(DimPlant[PlantName]), [OEE], , DESC, Dense)
+		formatString: 0
+		lineageTag: ca492aac-0fc8-4ef2-ae96-d4871d0069d5
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'AVG Defect Rate' = AVERAGEX(VALUES(DimDate[Date]), [Defect Rate])
+		formatString: 0%
+		lineageTag: 9b41a4a8-34e4-480a-b11e-fc25015e69a1
+
+		annotation PBI_FormatHint = {"isCustom":true}
+
+	measure 'GAP Defect Rate' = [Defect Rate] - 0.03
+		formatString: +0%;-0%;0%
+		lineageTag: 70ed23c5-a460-45db-8798-23bc53aff814
+
+		annotation PBI_FormatHint = {"isCustom":true}
+
+	measure 'RANK Defect Rate Plant' = RANKX(ALL(DimPlant[PlantName]), [Defect Rate], , ASC, Dense)
+		formatString: 0
+		lineageTag: 15ada8da-32d1-4777-90ba-8d3c127bbcb3
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'AVG Production Yield' = AVERAGEX(VALUES(DimDate[Date]), [Production Yield])
+		formatString: 0%
+		lineageTag: d2c5ff96-589a-4dc6-acf3-f030ef6115f4
+
+		annotation PBI_FormatHint = {"isCustom":true}
+
+	measure 'GAP Production Yield' = [Production Yield] - 0.93
+		formatString: +0.0%;-0.0%;0.0%
+		lineageTag: 4ab218c7-8333-4b71-a0c5-fbc20f859f66
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'RANK Production Yield Plant' = RANKX(ALL(DimPlant[PlantName]), [Production Yield], , DESC, Dense)
+		formatString: 0
+		lineageTag: 4d8fb87d-5772-4ad7-8bed-8e3279b2a08b
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'AVG Downtime' = AVERAGEX(VALUES(DimDate[Date]), [Total Downtime Hours])
+		formatString: #,0
+		lineageTag: 1c0e6a7a-c777-4820-ae5d-d8d8c1649e89
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'GAP Downtime' = [Total Downtime Hours] - 18
+		formatString: +0;-0;0
+		lineageTag: e0f276ce-0aa0-46d8-9155-95ac546a3b79
+
+		annotation PBI_FormatHint = {"isCustom":true}
+
+	measure 'RANK Downtime Plant' = RANKX(ALL(DimPlant[PlantName]), [Total Downtime Hours], , ASC, Dense)
+		formatString: 0
+		lineageTag: bb8790f7-574f-439d-ae84-c46358497978
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'OEE Benchmark' = 0.80
+		formatString: 0.0%
+		lineageTag: c09ec94d-f5f0-4c1c-95fd-ccbfeb3c56de
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Defect Count by Type' = SUM(FactDefects[DefectCount])
+		formatString: #,0
+		lineageTag: 6cf491d8-ee52-4cb7-a0aa-7f15f07b8787
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Defect Mix %' = DIVIDE([Defect Count by Type], CALCULATE([Defect Count by Type], ALL(DimDefectType)))
+		formatString: 0.0%
+		lineageTag: 64092324-0234-4b71-9d82-3a00452d1779
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Yield Goal' = 0.95
+		formatString: 0.0%
+		lineageTag: 35a550c5-4ea6-4410-9ee5-5660da2dd239
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Yield Actual' = [Production Yield]
+		formatString: 0.0%
+		lineageTag: e86b43bd-1319-4924-8248-7c650b5774fe
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Yield vs Goal %' = DIVIDE([Yield Actual], [Yield Goal])
+		formatString: 0.0%
+		lineageTag: f8c7aad8-e57b-4070-97fe-da5453e8b0b5
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Total Stock' = SUM(FactInventory[StockOnHand])
+		formatString: #,0
+		lineageTag: 09e788af-6c89-4aaf-a6c7-b368b9d11f1a
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Critical Stock Items' = CALCULATE(DISTINCTCOUNT(FactInventory[ProductID]), FactInventory[Status] = "CRITICAL")
+		formatString: 0
+		lineageTag: b9a47c3f-41ff-48a0-99e1-bebf3e7344c0
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Open Maintenance Alerts' = CALCULATE(COUNTROWS(FactMaintenance), FactMaintenance[Status] IN {"Scheduled","In Progress","Overdue"})
+		formatString: 0
+		lineageTag: 6a2fc065-ca9a-496d-9b8e-19b605bdb507
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Overdue Maintenance' = CALCULATE(COUNTROWS(FactMaintenance), FactMaintenance[Status] = "Overdue")
+		formatString: 0
+		lineageTag: 54de8910-4be1-42de-a627-e23be06246c7
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	/// Mois selectionne via le slicer deconnecte MonthPicker. A utiliser dans les KPI cards.
+	measure 'OEE Selected' =
+			VAR Sel = SELECTEDVALUE(MonthPicker[YearMonth])
+			RETURN CALCULATE([OEE], REMOVEFILTERS(DimDate), DimDate[YearMonth] = Sel)
+		formatString: 0.0%
+		lineageTag: 1fddfcac-7394-4937-a842-3ef29e58c96b
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Defect Rate Selected' =
+			VAR Sel = SELECTEDVALUE(MonthPicker[YearMonth])
+			RETURN CALCULATE([Defect Rate], REMOVEFILTERS(DimDate), DimDate[YearMonth] = Sel)
+		formatString: 0.0%
+		lineageTag: c71f50d1-e056-4662-a3ae-afd4d18193b1
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Production Yield Selected' =
+			VAR Sel = SELECTEDVALUE(MonthPicker[YearMonth])
+			RETURN CALCULATE([Production Yield], REMOVEFILTERS(DimDate), DimDate[YearMonth] = Sel)
+		formatString: 0%
+		lineageTag: a35b4ac9-9a34-492f-bf5b-ec2f9a9d5fd3
+
+		annotation PBI_FormatHint = {"isCustom":true}
+
+	measure 'Total Downtime Hours Selected' =
+			VAR Sel = SELECTEDVALUE(MonthPicker[YearMonth])
+			RETURN CALCULATE([Total Downtime Hours], REMOVEFILTERS(DimDate), DimDate[YearMonth] = Sel)
+		formatString: 0
+		lineageTag: b3ea8596-a46f-4525-a373-fb17fcf53c57
+
+	/// Variation Mois sur Mois (mois selectionne vs mois precedent)
+	measure 'OEE Variation MoM' =
+			VAR Sel = SELECTEDVALUE(MonthPicker[YearMonth])
+			VAR SelStart = CALCULATE(MIN(DimDate[Date]), ALL(DimDate), DimDate[YearMonth] = Sel)
+			VAR PrevEnd = SelStart - 1
+			VAR PrevStart = DATE(YEAR(PrevEnd), MONTH(PrevEnd), 1)
+			VAR Cur = [OEE Selected]
+			VAR Prev = CALCULATE([OEE], REMOVEFILTERS(DimDate), DimDate[Date] >= PrevStart && DimDate[Date] <= PrevEnd)
+			RETURN Cur - Prev
+		formatString: +0.0%;-0.0%;0.0%
+		lineageTag: 840c362b-fae0-43fa-ba2c-709eb5d39eb6
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Defect Rate Variation MoM' =
+			VAR Sel = SELECTEDVALUE(MonthPicker[YearMonth])
+			VAR SelStart = CALCULATE(MIN(DimDate[Date]), ALL(DimDate), DimDate[YearMonth] = Sel)
+			VAR PrevEnd = SelStart - 1
+			VAR PrevStart = DATE(YEAR(PrevEnd), MONTH(PrevEnd), 1)
+			VAR Cur = [Defect Rate Selected]
+			VAR Prev = CALCULATE([Defect Rate], REMOVEFILTERS(DimDate), DimDate[Date] >= PrevStart && DimDate[Date] <= PrevEnd)
+			RETURN Cur - Prev
+		formatString: +0.0%;-0.0%;0.0%
+		lineageTag: 06a778c3-cb90-4301-bdb1-2c01ada71c88
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Production Yield Variation MoM' =
+			VAR Sel = SELECTEDVALUE(MonthPicker[YearMonth])
+			VAR SelStart = CALCULATE(MIN(DimDate[Date]), ALL(DimDate), DimDate[YearMonth] = Sel)
+			VAR PrevEnd = SelStart - 1
+			VAR PrevStart = DATE(YEAR(PrevEnd), MONTH(PrevEnd), 1)
+			VAR Cur = [Production Yield Selected]
+			VAR Prev = CALCULATE([Production Yield], REMOVEFILTERS(DimDate), DimDate[Date] >= PrevStart && DimDate[Date] <= PrevEnd)
+			RETURN Cur - Prev
+		formatString: +0.0%;-0.0%;0.0%
+		lineageTag: 4e5207f1-df19-42e0-83b3-af0aa3523abc
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Downtime Variation MoM' =
+			VAR Sel = SELECTEDVALUE(MonthPicker[YearMonth])
+			VAR SelStart = CALCULATE(MIN(DimDate[Date]), ALL(DimDate), DimDate[YearMonth] = Sel)
+			VAR PrevEnd = SelStart - 1
+			VAR PrevStart = DATE(YEAR(PrevEnd), MONTH(PrevEnd), 1)
+			VAR Cur = [Total Downtime Hours Selected]
+			VAR Prev = CALCULATE([Total Downtime Hours], REMOVEFILTERS(DimDate), DimDate[Date] >= PrevStart && DimDate[Date] <= PrevEnd)
+			RETURN Cur - Prev
+		formatString: +0.0;-0.0;0.0 hours
+		lineageTag: dca78ce5-7ebd-477b-b0f6-7bab16f3df14
+
+		annotation PBI_FormatHint = {"isCustom":true}
+
+	/// Filtre pour les charts trailing 10 mois.
+	/// A glisser dans le panneau "Filtres sur ce visuel" du line/bar chart,
+	/// puis selectionner "est 1".
+	measure 'Is In Trailing 10M' =
+			VAR Sel = SELECTEDVALUE(MonthPicker[YearMonth])
+			VAR EndDate = CALCULATE(MAX(DimDate[Date]), ALL(DimDate), DimDate[YearMonth] = Sel)
+			VAR StartDate = EOMONTH(EndDate, -10) + 1
+			VAR RowDate = MAX(DimDate[Date])
+			RETURN IF(RowDate >= StartDate && RowDate <= EndDate, 1)
+		formatString: 0
+		lineageTag: 99870e28-699f-4cee-921b-92099d5747f3
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	/// Valeur de la metrique de la ligne courante de ProgressMetrics. A mettre dans le tableau progress bars.
+	measure 'Progress Value' =
+			VAR M = SELECTEDVALUE(ProgressMetrics[Metric])
+			RETURN
+			SWITCH(
+				M,
+				"Schedule Attainment",    [Schedule Attainment Selected],
+				"Maintenance Compliance", [Maintenance Compliance Selected],
+				"Stock Health",           [Stock Health Selected]
+			)
+		formatString: 0.0%
+		lineageTag: 5e40e995-7120-4e7e-8191-7007aa715333
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	/// Couleur hex de la barre de progression selon le palier (a utiliser via fx -> Field value).
+	measure 'Progress Color' =
+			VAR V = [Progress Value]
+			RETURN
+			SWITCH(
+				TRUE(),
+				V < 0.5,  "#6B2FB3",
+				V < 0.75, "#9B5DE5",
+				V < 0.9,  "#E0AAFF",
+				"#F4C95D"
+			)
+		lineageTag: e9b0a74e-4a68-4bcc-bb7d-78534add6331
+
+	/// Quality du mois selectionne via MonthPicker.
+	measure 'Quality Selected' =
+			VAR Sel = SELECTEDVALUE(MonthPicker[YearMonth])
+			RETURN CALCULATE([Quality], REMOVEFILTERS(DimDate), DimDate[YearMonth] = Sel)
+		formatString: 0.0%
+		lineageTag: 02e2f350-b480-4e8e-bb55-573c6dd702f8
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	/// Schedule Attainment = unites produites / unites planifiees, sur le mois selectionne.
+	measure 'Schedule Attainment Selected' =
+			VAR Sel = SELECTEDVALUE(MonthPicker[YearMonth])
+			RETURN CALCULATE(
+				DIVIDE(SUM(FactProduction[TotalUnitsProduced]), SUM(FactProduction[TargetUnits])),
+				REMOVEFILTERS(DimDate),
+				DimDate[YearMonth] = Sel
+			)
+		formatString: 0.0%
+		lineageTag: 92d3ca99-5ac6-4429-84b8-37174cf2e7a9
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	/// Maintenance Compliance = % d'alertes maintenance non "Overdue" sur le mois selectionne. Renvoie 100% si aucune alerte.
+	measure 'Maintenance Compliance Selected' =
+			VAR Sel = SELECTEDVALUE(MonthPicker[YearMonth])
+			VAR TotalAlerts = CALCULATE(COUNTROWS(FactMaintenance), REMOVEFILTERS(DimDate), DimDate[YearMonth] = Sel)
+			VAR Overdue = CALCULATE(COUNTROWS(FactMaintenance), REMOVEFILTERS(DimDate), DimDate[YearMonth] = Sel, FactMaintenance[Status] = "Overdue")
+			RETURN
+			IF(
+				ISBLANK(TotalAlerts) || TotalAlerts = 0,
+				1,
+				1 - DIVIDE(Overdue, TotalAlerts)
+			)
+		formatString: 0.0%
+		lineageTag: 1b139d4f-ee4c-4a20-b575-72ad54f6c4ec
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	/// Stock Health = % SKUs en statut "OK" (au-dessus du reorder point) sur le mois selectionne.
+	measure 'Stock Health Selected' =
+			VAR Sel = SELECTEDVALUE(MonthPicker[YearMonth])
+			VAR TotalRows = CALCULATE(COUNTROWS(FactInventory), REMOVEFILTERS(DimDate), DimDate[YearMonth] = Sel)
+			VAR OKRows = CALCULATE(COUNTROWS(FactInventory), REMOVEFILTERS(DimDate), DimDate[YearMonth] = Sel, FactInventory[Status] = "OK")
+			RETURN DIVIDE(OKRows, TotalRows)
+		formatString: 0.0%
+		lineageTag: f585599f-e20b-4569-adf0-45b056d0e389
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	/// Sous-titre dynamique du dashboard. A utiliser via Format -> Titre -> fx -> Field value sur un visuel texte ou un titre de page.
+	measure 'Dashboard Subtitle' =
+			"Dashboard / "
+			& SELECTEDVALUE(DimPlant[PlantName], "All Plants")
+			& " / "
+			& SELECTEDVALUE(DimMachine[MachineType], "All Machines")
+			& " / "
+			& SELECTEDVALUE(MonthPicker[YearMonth], "All Periods")
+
+	column _Hidden
+		dataType: string
+		isHidden
+		lineageTag: 1c1158c3-d2da-4e04-9077-9b3c53f674cb
+		summarizeBy: none
+		sourceColumn: _Hidden
+
+		annotation SummarizationSetBy = Automatic
+
+	partition _Measures = m
+		mode: import
+		source =
+				let
+				    Source = #table({"_Hidden"}, {{1}})
+				in
+				    Source
+
+	annotation PBI_ResultType = Table
+

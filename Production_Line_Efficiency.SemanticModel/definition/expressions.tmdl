@@ -1,0 +1,6 @@
+expression DossierDonnees = "C:\ProductionLineEfficiency\data\" meta [IsParameterQuery=true, Type="Text", IsParameterQueryRequired=true]
+	lineageTag: b61095f5-34db-555a-9956-78e7972a6db2
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Text

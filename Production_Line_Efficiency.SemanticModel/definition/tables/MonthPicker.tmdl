@@ -1,0 +1,27 @@
+table MonthPicker
+	lineageTag: 77e993fb-846d-4af5-980b-a1a069708cef
+
+	column YearMonth
+		dataType: string
+		lineageTag: 268bd689-55d2-4707-a4dd-5d402b76c920
+		summarizeBy: none
+		sourceColumn: [YearMonth]
+		sortByColumn: SortKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column SortKey
+		dataType: int64
+		isHidden
+		lineageTag: 2fe522a5-ab8c-4bf5-9a70-258200e866a2
+		summarizeBy: none
+		sourceColumn: [SortKey]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition MonthPicker = calculated
+		mode: import
+		source = SELECTCOLUMNS(SUMMARIZE(DimDate, DimDate[Year], DimDate[MonthNumber], DimDate[YearMonth]), "YearMonth", DimDate[YearMonth], "SortKey", DimDate[Year] * 100 + DimDate[MonthNumber])
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,111 @@
+table FactProduction
+	lineageTag: 27511782-2486-462c-a8f7-518c94724102
+
+	column ProductionID
+		dataType: int64
+		lineageTag: 3fe4e438-6f62-4bab-abe1-e55b6ebf66fe
+		summarizeBy: none
+		sourceColumn: ProductionID
+
+		annotation SummarizationSetBy = Automatic
+
+	column DateKey
+		dataType: int64
+		lineageTag: 45edb8bc-a3d8-4863-a3d0-6a6811fb2ab6
+		summarizeBy: none
+		sourceColumn: DateKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column PlantID
+		dataType: int64
+		lineageTag: d3457972-4835-4575-9841-b0ad4e64738e
+		summarizeBy: none
+		sourceColumn: PlantID
+
+		annotation SummarizationSetBy = Automatic
+
+	column ShiftID
+		dataType: int64
+		lineageTag: e86127f8-6d1c-4e24-8972-ddb58126335b
+		summarizeBy: none
+		sourceColumn: ShiftID
+
+		annotation SummarizationSetBy = Automatic
+
+	column MachineID
+		dataType: int64
+		lineageTag: ddf6a228-5ff0-4e32-b6f4-34494b124c16
+		summarizeBy: none
+		sourceColumn: MachineID
+
+		annotation SummarizationSetBy = Automatic
+
+	column ProductID
+		dataType: int64
+		lineageTag: 83f55a4e-0b20-42fb-9d0a-3f6c8a52ea3c
+		summarizeBy: none
+		sourceColumn: ProductID
+
+		annotation SummarizationSetBy = Automatic
+
+	column PlannedProductionTime_Min
+		dataType: int64
+		lineageTag: 74e5c6b2-4b50-411c-90c9-5f313c58510c
+		summarizeBy: none
+		sourceColumn: PlannedProductionTime_Min
+
+		annotation SummarizationSetBy = Automatic
+
+	column OperatingTime_Min
+		dataType: double
+		lineageTag: 03951f81-80f6-4087-b04f-c233a841f119
+		summarizeBy: none
+		sourceColumn: OperatingTime_Min
+
+		annotation SummarizationSetBy = Automatic
+
+	column IdealCycleTime_Min
+		dataType: double
+		lineageTag: b86ff087-70ce-4db3-8138-cdaf0c0921ef
+		summarizeBy: none
+		sourceColumn: IdealCycleTime_Min
+
+		annotation SummarizationSetBy = Automatic
+
+	column TotalUnitsProduced
+		dataType: int64
+		lineageTag: 5f84b9d5-fe02-462c-a7f0-0355f5e60c4d
+		summarizeBy: none
+		sourceColumn: TotalUnitsProduced
+
+		annotation SummarizationSetBy = Automatic
+
+	column GoodUnits
+		dataType: int64
+		lineageTag: c409686e-ecc5-47ad-9118-1e39b77b8b31
+		summarizeBy: none
+		sourceColumn: GoodUnits
+
+		annotation SummarizationSetBy = Automatic
+
+	column TargetUnits
+		dataType: int64
+		lineageTag: 61898eb9-08b0-4795-919f-5070e8bf60d6
+		summarizeBy: none
+		sourceColumn: TargetUnits
+
+		annotation SummarizationSetBy = Automatic
+
+	partition FactProduction = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DossierDonnees & "FactProduction.csv"), [Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    Typed = Table.TransformColumnTypes(Promoted, {{"ProductionID", Int64.Type}, {"DateKey", Int64.Type}, {"PlantID", Int64.Type}, {"ShiftID", Int64.Type}, {"MachineID", Int64.Type}, {"ProductID", Int64.Type}, {"PlannedProductionTime_Min", Int64.Type}, {"OperatingTime_Min", type number}, {"IdealCycleTime_Min", type number}, {"TotalUnitsProduced", Int64.Type}, {"GoodUnits", Int64.Type}, {"TargetUnits", Int64.Type}})
+				in
+				    Typed
+
+	annotation PBI_ResultType = Table
+

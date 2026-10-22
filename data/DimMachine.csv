@@ -1,0 +1,61 @@
+MachineID,MachineName,MachineType,PlantID,InstallYear,Capacity_UnitsPerHour
+1,CNC-01-01,CNC,1,2018,56
+2,CNC-01-02,CNC,1,2020,112
+3,Assembly Robot-01-01,Assembly Robot,1,2019,85
+4,Assembly Robot-01-02,Assembly Robot,1,2018,189
+5,Press-01-01,Press,1,2018,158
+6,Press-01-02,Press,1,2018,57
+7,Welding-01-01,Welding,1,2018,105
+8,Welding-01-02,Welding,1,2019,179
+9,Packaging Line-01-01,Packaging Line,1,2022,56
+10,Packaging Line-01-02,Packaging Line,1,2022,100
+11,Inspection-01-01,Inspection,1,2022,157
+12,Inspection-01-02,Inspection,1,2019,164
+13,CNC-02-01,CNC,2,2022,121
+14,CNC-02-02,CNC,2,2018,90
+15,Assembly Robot-02-01,Assembly Robot,2,2021,137
+16,Assembly Robot-02-02,Assembly Robot,2,2020,89
+17,Press-02-01,Press,2,2019,136
+18,Press-02-02,Press,2,2018,73
+19,Welding-02-01,Welding,2,2021,74
+20,Welding-02-02,Welding,2,2020,138
+21,Packaging Line-02-01,Packaging Line,2,2022,117
+22,Packaging Line-02-02,Packaging Line,2,2018,167
+23,Inspection-02-01,Inspection,2,2022,81
+24,Inspection-02-02,Inspection,2,2021,70
+25,CNC-03-01,CNC,3,2022,125
+26,CNC-03-02,CNC,3,2022,142
+27,Assembly Robot-03-01,Assembly Robot,3,2022,99
+28,Assembly Robot-03-02,Assembly Robot,3,2018,61
+29,Press-03-01,Press,3,2019,124
+30,Press-03-02,Press,3,2018,109
+31,Welding-03-01,Welding,3,2018,147
+32,Welding-03-02,Welding,3,2020,166
+33,Packaging Line-03-01,Packaging Line,3,2020,91
+34,Packaging Line-03-02,Packaging Line,3,2020,140
+35,Inspection-03-01,Inspection,3,2019,118
+36,Inspection-03-02,Inspection,3,2018,93
+37,CNC-04-01,CNC,4,2022,112
+38,CNC-04-02,CNC,4,2019,168
+39,Assembly Robot-04-01,Assembly Robot,4,2021,119
+40,Assembly Robot-04-02,Assembly Robot,4,2022,106
+41,Press-04-01,Press,4,2020,64
+42,Press-04-02,Press,4,2019,58
+43,Welding-04-01,Welding,4,2020,152
+44,Welding-04-02,Welding,4,2020,66
+45,Packaging Line-04-01,Packaging Line,4,2019,195
+46,Packaging Line-04-02,Packaging Line,4,2020,104
+47,Inspection-04-01,Inspection,4,2021,151
+48,Inspection-04-02,Inspection,4,2021,86
+49,CNC-05-01,CNC,5,2020,85
+50,CNC-05-02,CNC,5,2019,193
+51,Assembly Robot-05-01,Assembly Robot,5,2022,117
+52,Assembly Robot-05-02,Assembly Robot,5,2022,159
+53,Press-05-01,Press,5,2022,152
+54,Press-05-02,Press,5,2020,106
+55,Welding-05-01,Welding,5,2019,180
+56,Welding-05-02,Welding,5,2021,73
+57,Packaging Line-05-01,Packaging Line,5,2018,78
+58,Packaging Line-05-02,Packaging Line,5,2019,90
+59,Inspection-05-01,Inspection,5,2021,66
+60,Inspection-05-02,Inspection,5,2021,147

@@ -1,0 +1,39 @@
+table DimDefectType
+	lineageTag: 83ae4851-ee40-4e6a-9034-d2dfff7a8197
+
+	column DefectTypeID
+		dataType: int64
+		lineageTag: 31d152f2-a3ee-4e2f-9010-283089f338e6
+		summarizeBy: none
+		sourceColumn: DefectTypeID
+
+		annotation SummarizationSetBy = Automatic
+
+	column DefectName
+		dataType: string
+		lineageTag: 3670dd38-fc66-4d5a-b639-721bc03b2c7c
+		summarizeBy: none
+		sourceColumn: DefectName
+
+		annotation SummarizationSetBy = Automatic
+
+	column Severity
+		dataType: string
+		lineageTag: 6bca9b32-3f1f-490e-a373-b185fafcd42d
+		summarizeBy: none
+		sourceColumn: Severity
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DimDefectType = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DossierDonnees & "DimDefectType.csv"), [Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    Typed = Table.TransformColumnTypes(Promoted, {{"DefectTypeID", Int64.Type}, {"DefectName", type text}, {"Severity", type text}})
+				in
+				    Typed
+
+	annotation PBI_ResultType = Table
+

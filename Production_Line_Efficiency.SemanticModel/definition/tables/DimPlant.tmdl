@@ -1,0 +1,55 @@
+table DimPlant
+	lineageTag: 241c9899-fbdc-4efd-b71e-9f1311f6f025
+
+	column PlantID
+		dataType: int64
+		lineageTag: 8a8048d1-055c-42fe-9d38-911bd2e8d8cf
+		summarizeBy: none
+		sourceColumn: PlantID
+
+		annotation SummarizationSetBy = Automatic
+
+	column PlantName
+		dataType: string
+		lineageTag: 6061ecd6-480b-4053-8bb1-4f6d482173b8
+		summarizeBy: none
+		sourceColumn: PlantName
+
+		annotation SummarizationSetBy = Automatic
+
+	column Country
+		dataType: string
+		lineageTag: fb52de5e-86b4-4b5c-bc0d-2f6f81810c8e
+		summarizeBy: none
+		sourceColumn: Country
+
+		annotation SummarizationSetBy = Automatic
+
+	column Region
+		dataType: string
+		lineageTag: 7773d144-035a-463d-bfb1-5fb780f6749a
+		summarizeBy: none
+		sourceColumn: Region
+
+		annotation SummarizationSetBy = Automatic
+
+	column City
+		dataType: string
+		lineageTag: 7590fd21-0406-4c3b-b89c-531603a60278
+		summarizeBy: none
+		sourceColumn: City
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DimPlant = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DossierDonnees & "DimPlant.csv"), [Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    Typed = Table.TransformColumnTypes(Promoted, {{"PlantID", Int64.Type}, {"PlantName", type text}, {"Country", type text}, {"Region", type text}, {"City", type text}})
+				in
+				    Typed
+
+	annotation PBI_ResultType = Table
+

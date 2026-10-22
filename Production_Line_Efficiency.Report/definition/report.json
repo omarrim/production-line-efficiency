@@ -1,0 +1,232 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/report/3.2.0/schema.json",
+  "themeCollection": {
+    "baseTheme": {
+      "name": "CY26SU04",
+      "reportVersionAtImport": {
+        "visual": "2.8.0",
+        "report": "3.2.0",
+        "page": "2.3.1"
+      },
+      "type": "SharedResources"
+    }
+  },
+  "objects": {
+    "section": [
+      {
+        "properties": {
+          "verticalAlignment": {
+            "expr": {
+              "Literal": {
+                "Value": "'Top'"
+              }
+            }
+          }
+        }
+      }
+    ],
+    "outspacePane": [
+      {
+        "properties": {
+          "expanded": {
+            "expr": {
+              "Literal": {
+                "Value": "false"
+              }
+            }
+          }
+        }
+      }
+    ]
+  },
+  "publicCustomVisuals": [
+    "deneb7E15AEF80B9E4D4F8E12924291ECE89A"
+  ],
+  "resourcePackages": [
+    {
+      "name": "SharedResources",
+      "type": "SharedResources",
+      "items": [
+        {
+          "name": "CY26SU04",
+          "path": "BaseThemes/CY26SU04.json",
+          "type": "BaseTheme"
+        }
+      ]
+    },
+    {
+      "name": "RegisteredResources",
+      "type": "RegisteredResources",
+      "items": [
+        {
+          "name": "avatar7514186496663321.png",
+          "path": "avatar7514186496663321.png",
+          "type": "Image"
+        },
+        {
+          "name": "basil_star-outline051553307540332716.png",
+          "path": "basil_star-outline051553307540332716.png",
+          "type": "Image"
+        },
+        {
+          "name": "basil_star-outline06488015204200526.png",
+          "path": "basil_star-outline06488015204200526.png",
+          "type": "Image"
+        },
+        {
+          "name": "Card15133795970443912.png",
+          "path": "Card15133795970443912.png",
+          "type": "Image"
+        },
+        {
+          "name": "Card23112957057882225.png",
+          "path": "Card23112957057882225.png",
+          "type": "Image"
+        },
+        {
+          "name": "Card317830403573253095.png",
+          "path": "Card317830403573253095.png",
+          "type": "Image"
+        },
+        {
+          "name": "Card423456490693287035.png",
+          "path": "Card423456490693287035.png",
+          "type": "Image"
+        },
+        {
+          "name": "cuida_dashboard-outline5987635423198338.png",
+          "path": "cuida_dashboard-outline5987635423198338.png",
+          "type": "Image"
+        },
+        {
+          "name": "flowbite_bell-ring-outline29512630200410566.png",
+          "path": "flowbite_bell-ring-outline29512630200410566.png",
+          "type": "Image"
+        },
+        {
+          "name": "Gradient6083554610155831.png",
+          "path": "Gradient6083554610155831.png",
+          "type": "Image"
+        },
+        {
+          "name": "Hero25576917090688445.png",
+          "path": "Hero25576917090688445.png",
+          "type": "Image"
+        },
+        {
+          "name": "heroicons-outline_document-rep05660069982088023.png",
+          "path": "heroicons-outline_document-rep05660069982088023.png",
+          "type": "Image"
+        },
+        {
+          "name": "heroicons-outline_document-rep519896712340183.png",
+          "path": "heroicons-outline_document-rep519896712340183.png",
+          "type": "Image"
+        },
+        {
+          "name": "hugeicons_shopping-cart-02190746365912992.png",
+          "path": "hugeicons_shopping-cart-02190746365912992.png",
+          "type": "Image"
+        },
+        {
+          "name": "hugeicons_truck-delivery05055723598354234.png",
+          "path": "hugeicons_truck-delivery05055723598354234.png",
+          "type": "Image"
+        },
+        {
+          "name": "humbleicons_shield-check22314434496248584.png",
+          "path": "humbleicons_shield-check22314434496248584.png",
+          "type": "Image"
+        },
+        {
+          "name": "humbleicons_shield-check9052335723627113.png",
+          "path": "humbleicons_shield-check9052335723627113.png",
+          "type": "Image"
+        },
+        {
+          "name": "im1_1044050146766479226.png",
+          "path": "im1_1044050146766479226.png",
+          "type": "Image"
+        },
+        {
+          "name": "im2_135001091973323883.png",
+          "path": "im2_135001091973323883.png",
+          "type": "Image"
+        },
+        {
+          "name": "lucide_settings208873376606248717.png",
+          "path": "lucide_settings208873376606248717.png",
+          "type": "Image"
+        },
+        {
+          "name": "lucide_settings6463998548902894.png",
+          "path": "lucide_settings6463998548902894.png",
+          "type": "Image"
+        },
+        {
+          "name": "majesticons_filter-line22749331657836104.png",
+          "path": "majesticons_filter-line22749331657836104.png",
+          "type": "Image"
+        },
+        {
+          "name": "majesticons_filter-line28111670735911262.png",
+          "path": "majesticons_filter-line28111670735911262.png",
+          "type": "Image"
+        },
+        {
+          "name": "majesticons_filter-line3273855331764848.png",
+          "path": "majesticons_filter-line3273855331764848.png",
+          "type": "Image"
+        },
+        {
+          "name": "majesticons_open9025840929526655.png",
+          "path": "majesticons_open9025840929526655.png",
+          "type": "Image"
+        },
+        {
+          "name": "mingcute_tool-line247941529343072.png",
+          "path": "mingcute_tool-line247941529343072.png",
+          "type": "Image"
+        },
+        {
+          "name": "mingcute_tool-line26402377367207595.png",
+          "path": "mingcute_tool-line26402377367207595.png",
+          "type": "Image"
+        },
+        {
+          "name": "Sidebar18587596105024861.png",
+          "path": "Sidebar18587596105024861.png",
+          "type": "Image"
+        },
+        {
+          "name": "solar_box-outline2324837838783128.png",
+          "path": "solar_box-outline2324837838783128.png",
+          "type": "Image"
+        },
+        {
+          "name": "streamline_production-belt-rem5276929009266333.png",
+          "path": "streamline_production-belt-rem5276929009266333.png",
+          "type": "Image"
+        },
+        {
+          "name": "streamline_production-belt-rem6471940029080214.png",
+          "path": "streamline_production-belt-rem6471940029080214.png",
+          "type": "Image"
+        },
+        {
+          "name": "streamline-ultimate_factory-in3827002744420034.png",
+          "path": "streamline-ultimate_factory-in3827002744420034.png",
+          "type": "Image"
+        }
+      ]
+    }
+  ],
+  "settings": {
+    "useStylableVisualContainerHeader": true,
+    "exportDataMode": "AllowSummarized",
+    "defaultDrillFilterOtherVisuals": true,
+    "allowChangeFilterTypes": true,
+    "useEnhancedTooltips": true,
+    "useDefaultAggregateDisplayName": true
+  }
+}

@@ -1,0 +1,71 @@
+table FactDefects
+	lineageTag: b8fc5d6a-8b6a-444d-bf89-5df5111ad325
+
+	column DefectID
+		dataType: int64
+		lineageTag: 83157122-2915-490d-a19b-5f9d902d042f
+		summarizeBy: none
+		sourceColumn: DefectID
+
+		annotation SummarizationSetBy = Automatic
+
+	column DateKey
+		dataType: int64
+		lineageTag: 391a187b-929b-4a94-9035-3b1f28937fb4
+		summarizeBy: none
+		sourceColumn: DateKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column PlantID
+		dataType: int64
+		lineageTag: 0675a225-d309-4a4b-afbe-210ac6a1c354
+		summarizeBy: none
+		sourceColumn: PlantID
+
+		annotation SummarizationSetBy = Automatic
+
+	column MachineID
+		dataType: int64
+		lineageTag: 30ad5c8c-b531-4b14-9d3f-99c55512fe0a
+		summarizeBy: none
+		sourceColumn: MachineID
+
+		annotation SummarizationSetBy = Automatic
+
+	column ProductID
+		dataType: int64
+		lineageTag: c9edccf3-1bc8-4964-955f-a66985ad17cf
+		summarizeBy: none
+		sourceColumn: ProductID
+
+		annotation SummarizationSetBy = Automatic
+
+	column DefectTypeID
+		dataType: int64
+		lineageTag: af456417-9c50-452f-8006-1e0c8fae809b
+		summarizeBy: none
+		sourceColumn: DefectTypeID
+
+		annotation SummarizationSetBy = Automatic
+
+	column DefectCount
+		dataType: int64
+		lineageTag: 20815646-0beb-4cb0-bff7-28b1c0829acd
+		summarizeBy: none
+		sourceColumn: DefectCount
+
+		annotation SummarizationSetBy = Automatic
+
+	partition FactDefects = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DossierDonnees & "FactDefects.csv"), [Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    Typed = Table.TransformColumnTypes(Promoted, {{"DefectID", Int64.Type}, {"DateKey", Int64.Type}, {"PlantID", Int64.Type}, {"MachineID", Int64.Type}, {"ProductID", Int64.Type}, {"DefectTypeID", Int64.Type}, {"DefectCount", Int64.Type}})
+				in
+				    Typed
+
+	annotation PBI_ResultType = Table
+

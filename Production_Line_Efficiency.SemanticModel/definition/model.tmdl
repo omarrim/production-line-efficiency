@@ -1,0 +1,32 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-US
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBI_QueryOrder = ["DossierDonnees","DimDate","DimPlant","DimShift","DimMachine","DimProduct","DimDefectType","DimDowntimeReason","FactProduction","FactDefects","FactDowntime","FactInventory","FactMaintenance","_Measures","MonthPicker","ProgressMetrics"]
+
+annotation PBI_ProTooling = ["DevMode"]
+
+ref table DimDate
+ref table DimPlant
+ref table DimShift
+ref table DimMachine
+ref table DimProduct
+ref table DimDefectType
+ref table DimDowntimeReason
+ref table FactProduction
+ref table FactDefects
+ref table FactDowntime
+ref table FactInventory
+ref table FactMaintenance
+ref table _Measures
+ref table MonthPicker
+ref table ProgressMetrics
+
+ref cultureInfo en-US
+

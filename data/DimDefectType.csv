@@ -1,0 +1,4 @@
+DefectTypeID,DefectName,Severity
+1,Cosmetic,Visual
+2,Functional,Critical
+3,Packaging,Minor

@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "Production_Line_Efficiency"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "ab50057b-b4dc-45b4-b1dd-d4613cb1bc15"
+  }
+}

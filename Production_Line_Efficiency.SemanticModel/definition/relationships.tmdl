@@ -1,0 +1,84 @@
+relationship rel_01_FactProduction_DateKey_DimDate
+	fromColumn: FactProduction.DateKey
+	toColumn: DimDate.DateKey
+
+relationship rel_02_FactProduction_PlantID_DimPlant
+	fromColumn: FactProduction.PlantID
+	toColumn: DimPlant.PlantID
+
+relationship rel_03_FactProduction_ShiftID_DimShift
+	fromColumn: FactProduction.ShiftID
+	toColumn: DimShift.ShiftID
+
+relationship rel_04_FactProduction_MachineID_DimMachine
+	fromColumn: FactProduction.MachineID
+	toColumn: DimMachine.MachineID
+
+relationship rel_05_FactProduction_ProductID_DimProduct
+	fromColumn: FactProduction.ProductID
+	toColumn: DimProduct.ProductID
+
+relationship rel_06_FactDefects_DateKey_DimDate
+	fromColumn: FactDefects.DateKey
+	toColumn: DimDate.DateKey
+
+relationship rel_07_FactDefects_PlantID_DimPlant
+	fromColumn: FactDefects.PlantID
+	toColumn: DimPlant.PlantID
+
+relationship rel_08_FactDefects_MachineID_DimMachine
+	fromColumn: FactDefects.MachineID
+	toColumn: DimMachine.MachineID
+
+relationship rel_09_FactDefects_ProductID_DimProduct
+	fromColumn: FactDefects.ProductID
+	toColumn: DimProduct.ProductID
+
+relationship rel_10_FactDefects_DefectTypeID_DimDefectType
+	fromColumn: FactDefects.DefectTypeID
+	toColumn: DimDefectType.DefectTypeID
+
+relationship rel_11_FactDowntime_DateKey_DimDate
+	fromColumn: FactDowntime.DateKey
+	toColumn: DimDate.DateKey
+
+relationship rel_12_FactDowntime_PlantID_DimPlant
+	fromColumn: FactDowntime.PlantID
+	toColumn: DimPlant.PlantID
+
+relationship rel_13_FactDowntime_MachineID_DimMachine
+	fromColumn: FactDowntime.MachineID
+	toColumn: DimMachine.MachineID
+
+relationship rel_14_FactDowntime_ShiftID_DimShift
+	fromColumn: FactDowntime.ShiftID
+	toColumn: DimShift.ShiftID
+
+relationship rel_15_FactDowntime_DowntimeReasonID_DimDowntimeReason
+	fromColumn: FactDowntime.DowntimeReasonID
+	toColumn: DimDowntimeReason.DowntimeReasonID
+
+relationship rel_16_FactInventory_DateKey_DimDate
+	fromColumn: FactInventory.DateKey
+	toColumn: DimDate.DateKey
+
+relationship rel_17_FactInventory_PlantID_DimPlant
+	fromColumn: FactInventory.PlantID
+	toColumn: DimPlant.PlantID
+
+relationship rel_18_FactInventory_ProductID_DimProduct
+	fromColumn: FactInventory.ProductID
+	toColumn: DimProduct.ProductID
+
+relationship rel_19_FactMaintenance_DateKey_DimDate
+	fromColumn: FactMaintenance.DateKey
+	toColumn: DimDate.DateKey
+
+relationship rel_20_FactMaintenance_MachineID_DimMachine
+	fromColumn: FactMaintenance.MachineID
+	toColumn: DimMachine.MachineID
+
+relationship rel_21_FactMaintenance_PlantID_DimPlant
+	fromColumn: FactMaintenance.PlantID
+	toColumn: DimPlant.PlantID
+

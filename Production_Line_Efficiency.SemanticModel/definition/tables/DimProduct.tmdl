@@ -1,0 +1,47 @@
+table DimProduct
+	lineageTag: be9d81d0-9603-4602-931c-4e026d502ece
+
+	column ProductID
+		dataType: int64
+		lineageTag: b73fdc6c-d98d-4385-807b-c2ac64a48f66
+		summarizeBy: none
+		sourceColumn: ProductID
+
+		annotation SummarizationSetBy = Automatic
+
+	column ProductName
+		dataType: string
+		lineageTag: f615afa7-1603-4627-954a-71b02c491a27
+		summarizeBy: none
+		sourceColumn: ProductName
+
+		annotation SummarizationSetBy = Automatic
+
+	column ProductCategory
+		dataType: string
+		lineageTag: fbd9c185-f47d-42f1-bf42-c620593e6c5f
+		summarizeBy: none
+		sourceColumn: ProductCategory
+
+		annotation SummarizationSetBy = Automatic
+
+	column UnitCost
+		dataType: double
+		lineageTag: 91c90bda-0055-478a-a912-3f51044ca5e2
+		summarizeBy: none
+		sourceColumn: UnitCost
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DimProduct = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DossierDonnees & "DimProduct.csv"), [Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    Typed = Table.TransformColumnTypes(Promoted, {{"ProductID", Int64.Type}, {"ProductName", type text}, {"ProductCategory", type text}, {"UnitCost", type number}})
+				in
+				    Typed
+
+	annotation PBI_ResultType = Table
+

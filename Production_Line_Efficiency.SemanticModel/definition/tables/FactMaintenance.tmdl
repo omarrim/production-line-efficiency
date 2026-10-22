@@ -1,0 +1,79 @@
+table FactMaintenance
+	lineageTag: 8b92d4e2-dcf4-465f-ab24-8499d0e813f1
+
+	column MaintenanceID
+		dataType: int64
+		lineageTag: c8899900-2fbd-4b70-a52b-86d00ce6106e
+		summarizeBy: none
+		sourceColumn: MaintenanceID
+
+		annotation SummarizationSetBy = Automatic
+
+	column DateKey
+		dataType: int64
+		lineageTag: 354276cd-9ef6-46ff-a3b4-318f0d3d2af9
+		summarizeBy: none
+		sourceColumn: DateKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column MachineID
+		dataType: int64
+		lineageTag: 2ebdebd2-1cca-4273-ac4d-7acf8a4693bb
+		summarizeBy: none
+		sourceColumn: MachineID
+
+		annotation SummarizationSetBy = Automatic
+
+	column PlantID
+		dataType: int64
+		lineageTag: 8af72cd9-c70a-4b80-8199-fc6e37055518
+		summarizeBy: none
+		sourceColumn: PlantID
+
+		annotation SummarizationSetBy = Automatic
+
+	column AlertType
+		dataType: string
+		lineageTag: 319b184c-9ff8-4a23-bc68-5790eba56131
+		summarizeBy: none
+		sourceColumn: AlertType
+
+		annotation SummarizationSetBy = Automatic
+
+	column Priority
+		dataType: string
+		lineageTag: e4e1bc5c-c448-473f-9661-ac2f991cf1a6
+		summarizeBy: none
+		sourceColumn: Priority
+
+		annotation SummarizationSetBy = Automatic
+
+	column Status
+		dataType: string
+		lineageTag: e7646596-41d1-4046-9b45-fc877a29a5c0
+		summarizeBy: none
+		sourceColumn: Status
+
+		annotation SummarizationSetBy = Automatic
+
+	column EstimatedHours
+		dataType: double
+		lineageTag: 8d9f77ff-7875-402c-bdc1-15c56be6b6bd
+		summarizeBy: none
+		sourceColumn: EstimatedHours
+
+		annotation SummarizationSetBy = Automatic
+
+	partition FactMaintenance = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DossierDonnees & "FactMaintenance.csv"), [Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    Typed = Table.TransformColumnTypes(Promoted, {{"MaintenanceID", Int64.Type}, {"DateKey", Int64.Type}, {"MachineID", Int64.Type}, {"PlantID", Int64.Type}, {"AlertType", type text}, {"Priority", type text}, {"Status", type text}, {"EstimatedHours", type number}})
+				in
+				    Typed
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,39 @@
+table DimDowntimeReason
+	lineageTag: 1304a429-c4a3-433d-ae6b-804a08879b42
+
+	column DowntimeReasonID
+		dataType: int64
+		lineageTag: 6d98f9bf-b164-44d0-9f9d-6e83fe30ab4b
+		summarizeBy: none
+		sourceColumn: DowntimeReasonID
+
+		annotation SummarizationSetBy = Automatic
+
+	column ReasonName
+		dataType: string
+		lineageTag: 799654ba-cbb7-47df-97af-982fd00e0462
+		summarizeBy: none
+		sourceColumn: ReasonName
+
+		annotation SummarizationSetBy = Automatic
+
+	column ReasonCategory
+		dataType: string
+		lineageTag: 3a06832a-30aa-4665-a6aa-64b3374d2f4b
+		summarizeBy: none
+		sourceColumn: ReasonCategory
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DimDowntimeReason = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DossierDonnees & "DimDowntimeReason.csv"), [Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    Typed = Table.TransformColumnTypes(Promoted, {{"DowntimeReasonID", Int64.Type}, {"ReasonName", type text}, {"ReasonCategory", type text}})
+				in
+				    Typed
+
+	annotation PBI_ResultType = Table
+
